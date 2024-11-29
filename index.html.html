@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recipes Checker App</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+      /* General Reset */
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        background-color: #f2f2f7;
+        margin: 0;
+        padding: 0;
+        color: #333;
+      }
+
+      .container {
+        max-width: 600px;
+        margin: 30px auto;
+        padding: 20px;
+        background: #fff;
+        border-radius: 16px;
+        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        text-align: center;
+        font-size: 24px;
+        margin-bottom: 20px;
+        color: #111;
+      }
+
+      .form-grid {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+      }
+
+      .column {
+        width: 48%;
+      }
+
+      .recipe {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 16px;
+        background: #f9f9f9;
+        padding: 10px 15px;
+        border-radius: 12px;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+      }
+
+      .recipe label {
+        font-size: 14px;
+        flex: 1;
+        margin-right: 10px;
+        color: #555;
+      }
+
+      .recipe select {
+        flex: 2;
+        padding: 5px;
+        font-size: 14px;
+        border: 1px solid #e1e1e8;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+        outline: none;
+      }
+
+      button {
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+        font-weight: bold;
+        background-color: #007aff;
+        color: white;
+        border: none;
+        border-radius: 12px;
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.15);
+        cursor: pointer;
+        margin-top: 20px;
+        transition: background-color 0.3s ease;
+      }
+
+      button:hover {
+        background-color: #005bb5;
+      }
+
+      .results {
+        margin-top: 20px;
+        padding: 15px;
+        background-color: #f0f8ff;
+        border: 1px solid #cce7ff;
+        border-radius: 12px;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+        position: relative;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+      }
+
+      table,
+      th,
+      td {
+        border: 1px solid #cce7ff;
+      }
+
+      th,
+      td {
+        padding: 10px;
+        text-align: left;
+      }
+
+      th {
+        background-color: #e8f4ff;
+      }
+
+      .export-icon {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 20px;
+        color: #007aff;
+        cursor: pointer;
+      }
+
+      .export-icon:hover {
+        color: #005bb5;
+      }
+
+      .date-section {
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+
+      .summary {
+        margin-top: 20px;
+        font-weight: bold;
+        color: #333;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>📝Kiểm Tra Nguyên Liệu (BNC)</h1>
+      <form id="recipes-form">
+        <div class="form-grid">
+          <!-- Left Column: C1-C4 -->
+          <div class="column">
+            <div class="recipe">
+              <label for="recipe-c1">Chè C1</label>
+              <select id="recipe-c1" name="recipe-c1">
+                <option value="0" selected>0</option>
+                <script>
+                  for (let i = 1; i <= 20; i++) {
+                    document.write(`<option value="${i}">${i}</option>`);
+                  }
+                </script>
+              </select>
+            </div>
+            <div class="recipe">
+              <label for="recipe-c2">Chè C2</label>
+              <select id="recipe-c2" name="recipe-c2">
+                <option value="0" selected>0</option>
+                <script>
+                  for (let i = 1; i <= 20; i++) {
+                    document.write(`<option value="${i}">${i}</option>`);
+                  }
+                </script>
+              </select>
+            </div>
+            <div class="recipe">
+              <label for="recipe-c3">Chè C3</label>
+              <select id="recipe-c3" name="recipe-c3">
+                <option value="0" selected>0</option>
+                <script>
+                  for (let i = 1; i <= 20; i++) {
+                    document.write(`<option value="${i}">${i}</option>`);
+                  }
+                </script>
+              </select>
+            </div>
+            <div class="recipe">
+              <label for="recipe-c4">Chè C4</label>
+              <select id="recipe-c4" name="recipe-c4">
+                <option value="0" selected>0</option>
+                <script>
+                  for (let i = 1; i <= 20; i++) {
+                    document.write(`<option value="${i}">${i}</option>`);
+                  }
+                </script>
+              </select>
+            </div>
+          </div>
+
+          <!-- Right Column: C5-C8 -->
+          <div class="column">
+            <div class="recipe">
+              <label for="recipe-c5">Chè C5</label>
+              <select id="recipe-c5" name="recipe-c5">
+                <option value="0" selected>0</option>
+                <script>
+                  for (let i = 1; i <= 20; i++) {
+                    document.write(`<option value="${i}">${i}</option>`);
+                  }
+                </script>
+              </select>
+            </div>
+            <div class="recipe">
+              <label for="recipe-c6">Chè C6</label>
+              <select id="recipe-c6" name="recipe-c6">
+                <option value="0" selected>0</option>
+                <script>
+                  for (let i = 1; i <= 20; i++) {
+                    document.write(`<option value="${i}">${i}</option>`);
+                  }
+                </script>
+              </select>
+            </div>
+            <div class="recipe">
+              <label for="recipe-c7">Chè C7</label>
+              <select id="recipe-c7" name="recipe-c7">
+                <option value="0" selected>0</option>
+                <script>
+                  for (let i = 1; i <= 20; i++) {
+                    document.write(`<option value="${i}">${i}</option>`);
+                  }
+                </script>
+              </select>
+            </div>
+            <div class="recipe">
+              <label for="recipe-c8">Chè C8</label>
+              <select id="recipe-c8" name="recipe-c8">
+                <option value="0" selected>0</option>
+                <script>
+                  for (let i = 1; i <= 20; i++) {
+                    document.write(`<option value="${i}">${i}</option>`);
+                  }
+                </script>
+              </select>
+            </div>
+          </div>
+        </div>
+        <button type="button" onclick="checkIngredients()">Xem Nguyên Liệu</button>
+      </form>
+      <div id="results" class="results" style="display: none">
+        <div class="date-section">
+          Date: <input 
+            type="date" 
+            id="date-picker" 
+            style="font-weight: normal" 
+            placeholder="yyyy-mm-dd"
+          />
+          <span id="formatted-date" style="margin-left: 10px; font-weight: bold;"></span>
+        </div>
+        <span class="export-icon" onclick="exportAsImage()">📤</span>
+      </div>
+    </div>
+    <script>
+      function formatDate() {
+        const dateInput = document.getElementById("date-picker");
+        const formattedDate = document.getElementById("formatted-date");
+
+        const dateValue = dateInput.value;
+        if (dateValue) {
+          const [year, month, day] = dateValue.split("-");
+          formattedDate.textContent = `Formatted: ${month}/${day}/${year}`;
+        } else {
+          formattedDate.textContent = ""; // Clear if no date selected
+        }
+      }
+
+      document.getElementById("date-picker").addEventListener("input", formatDate);
+
+      function checkIngredients() {
+        const C1 = parseInt(document.getElementById("recipe-c1").value);
+        const C2 = parseInt(document.getElementById("recipe-c2").value);
+        const C3 = parseInt(document.getElementById("recipe-c3").value);
+        const C4 = parseInt(document.getElementById("recipe-c4").value);
+        const C5 = parseInt(document.getElementById("recipe-c5").value);
+        const C6 = parseInt(document.getElementById("recipe-c6").value);
+        const C7 = parseInt(document.getElementById("recipe-c7").value);
+        const C8 = parseInt(document.getElementById("recipe-c8").value);
+
+        const ingredients = {
+          "Đậu đỏ": { count: C1 * 0.2 + C3 * 0.4, unit: "thùng 12qt" },
+          "Đậu trắng": { count: C1 * 0.2 + C3 * 0.4, unit: "thùng 12qt" },
+          "Đậu xanh": { count: C1 * 0.125 + C3 * 0.125 + C7 * 0.125, unit: "thùng 6qt" },
+          "Khoai môn": { count: C1 * 0.2, unit: "ô" },
+          "Rau câu dẻo": { count: C1 * 0.16 + C2 * 0.2 + C3 * 0.4 + C6 * 0.3 + C7 * 0.3, unit: "thùng 12qt" },
+          "Rau câu sợi xanh": { count: C7 * 0.4, unit: "thùng 6qt" },
+          "Sương sáo": { count: C4 * 0.5, unit: "khay" },
+          "Dừa non": { count: C6 * 0.4 + C7 * 0.3, unit: "thùng 6qt" },
+          "Bánh lọt": { count: C1 * 0.2 + C3 * 0.3 + C4 * 0.4, unit: "thùng 12qt" },
+          "Hạt lựu": { count: C1 * 0.25 + C2 * 0.25 + C3 * 0.25, unit: "thùng 12qt" },
+          "Hạt đác thốt nốt": { count: C1 * 0.04 + C6 * 0.2, unit: "thùng 12qt" },
+          "Bơ pudding": { count: C7 * 30, unit: "cục" },
+          "Bơ xay": { count: C7 * 1, unit: "ô" },
+          "Bơ cục": { count: C6 * 0.2 + C7 * 1.25, unit: "ô" },
+          "Dừa sợi": { count: C6 * 0.333, unit: "thùng 6qt" },
+          "Mít": { count: C1 * 0.25 + C2 * 0.3333, unit: "ô" },
+          "Sầu riêng": { count: C1 * 0.3 + C6 * 0.2, unit: "ô" },
+          "Sữa dừa dầm": { count: C6 * 1, unit: "ca" },
+          "Đậu phộng": { count: C1 * 0.25 + C6 * 0.3, unit: "bịch" },
+          "Đậu hủ": { count: C8 * 30, unit: "ly" },
+        };
+
+        const usedIngredients = Object.entries(ingredients)
+          .filter(([_, data]) => data.count > 0)
+          .map(
+            ([name, data]) =>
+              `<tr><td><strong style="font-size: 12px; color: green;">${name}</strong></td><td>${data.count.toFixed(3)}</td><td>${data.unit}</td></tr>`
+          );
+
+        const recipeValues = { C1, C2, C3, C4, C5, C6, C7, C8 };
+        const summaryItems = Object.entries(recipeValues)
+          .filter(([_, value]) => value > 0)
+          .map(([key, value]) => `${key}: ${value}`);
+        const hasRecipes = summaryItems.length > 0;
+
+        const resultsDiv = document.getElementById("results");
+        resultsDiv.style.display = "block";
+
+        resultsDiv.innerHTML = `
+          <div class="date-section">
+            <label>📆Ngày:</label>
+            <input 
+              type="date" 
+              id="date-picker" 
+              style="font-weight: normal" 
+              placeholder="yyyy-mm-dd"
+            />
+            <span id="formatted-date" style="margin-left: 10px; font-weight: bold;"></span>
+          </div>
+          <span class="export-icon" onclick="exportAsImage()">📤</span>
+          <strong>🥣Nguyên Liệu Sử Dụng:</strong>
+          <table>
+            <thead>
+              <tr>
+                <th>Nguyên liệu</th>
+                <th>Tổng số</th>
+                <th>Đơn vị</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${usedIngredients.join("")}
+            </tbody>
+          </table>
+          ${hasRecipes ? `<div class="summary">📒Tóm tắt: ${summaryItems.join(", ")}</div>` : ""}
+        `;
+        formatDate();
+      }
+
+      function exportAsImage() {
+        const resultsDiv = document.getElementById("results");
+        const dateInput = document.getElementById("date-picker").value || "NoDate";
+        const formattedDate = dateInput
+          ? dateInput.replace(/-/g, "") // Convert "yyyy-mm-dd" to "yyyymmdd"
+          : "NoDate";
+
+        const fileName = `BNC_${formattedDate}_Recipes.png`;
+
+        html2canvas(resultsDiv, { scale: 2 }).then((canvas) => {
+          const link = document.createElement("a");
+          link.download = fileName; // Use dynamic file name
+          link.href = canvas.toDataURL("image/png");
+          link.click();
+        });
+      }
+    </script>
+  </body>
+</html>
