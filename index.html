@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>Recipes Checker App</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
@@ -13,6 +13,8 @@
         margin: 0;
         padding: 0;
         color: #333;
+        overflow-x: hidden;
+        -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
       }
 
       .container {
@@ -67,6 +69,11 @@
         border-radius: 8px;
         background-color: #f9f9f9;
         outline: none;
+        -webkit-appearance: none; /* Remove default select styling */
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+        background-repeat: no-repeat;
+        background-position: right 0.5rem center;
+        background-size: 1em;
       }
 
       button {
@@ -82,6 +89,7 @@
         cursor: pointer;
         margin-top: 20px;
         transition: background-color 0.3s ease;
+        touch-action: manipulation; /* Improve touch responsiveness */
       }
 
       button:hover {
@@ -142,6 +150,145 @@
         margin-top: 20px;
         font-weight: bold;
         color: #333;
+      }
+
+      /* Mobile App-Like Styling */
+      @media (max-width: 1024px) {
+        body {
+          background-color: #fff; /* Full white background for app-like feel */
+          padding: 0;
+          margin: 0;
+          height: 100vh; /* Full height for mobile */
+          display: flex;
+          flex-direction: column;
+        }
+
+        .container {
+          margin: 0;
+          padding: 15px;
+          border-radius: 0; /* Remove rounded corners for full-screen app look */
+          box-shadow: none; /* Remove shadow for seamless integration */
+          flex: 1;
+          overflow-y: auto; /* Allow scrolling within container */
+          width: 100%;
+          max-width: none; /* Full width */
+        }
+
+        h1 {
+          font-size: 20px;
+          margin: 10px 0;
+          position: sticky;
+          top: 0;
+          background: #fff;
+          z-index: 10;
+          padding: 10px 0;
+          border-bottom: 1px solid #e1e1e8; /* Subtle divider */
+        }
+
+        .form-grid {
+          flex-direction: column; /* Stack columns on mobile */
+          gap: 10px;
+        }
+
+        .column {
+          width: 100%; /* Full width for each column */
+        }
+
+        .recipe {
+          padding: 12px;
+          margin-bottom: 12px;
+          border-radius: 10px;
+        }
+
+        .recipe label {
+          font-size: 16px; /* Larger for touch readability */
+        }
+
+        .recipe select {
+          font-size: 16px;
+          padding: 10px;
+          border-radius: 10px;
+        }
+
+        button {
+          padding: 15px;
+          font-size: 18px;
+          border-radius: 14px;
+          margin-top: 15px;
+          position: sticky;
+          bottom: 15px;
+          z-index: 10;
+        }
+
+        .results {
+          padding: 12px;
+          border-radius: 10px;
+          margin-bottom: 20px;
+        }
+
+        th,
+        td {
+          padding: 8px;
+          font-size: 14px;
+        }
+
+        .export-icon {
+          font-size: 24px;
+          padding: 5px;
+        }
+
+        .date-section input[type="date"] {
+          font-size: 16px;
+          padding: 8px;
+          width: 100%;
+          box-sizing: border-box;
+          border: 1px solid #e1e1e8;
+          border-radius: 8px;
+        }
+      }
+
+      /* Extra small devices (phones, 600px and down) */
+      @media (max-width: 600px) {
+        .container {
+          padding: 10px;
+        }
+
+        h1 {
+          font-size: 18px;
+          padding: 8px 0;
+        }
+
+        .recipe {
+          flex-direction: column;
+          align-items: flex-start;
+          padding: 10px;
+        }
+
+        .recipe label {
+          margin-bottom: 8px;
+          font-size: 14px;
+        }
+
+        .recipe select {
+          width: 100%;
+          padding: 12px;
+          font-size: 14px;
+        }
+
+        button {
+          padding: 12px;
+          font-size: 16px;
+        }
+
+        th,
+        td {
+          font-size: 12px;
+          padding: 6px;
+        }
+
+        .results {
+          padding: 10px;
+        }
       }
     </style>
   </head>
@@ -268,7 +415,7 @@
 
         const dateValue = dateInput.value;
         if (dateValue) {
-          const [year, month, day] = dateValue.split("-");
+          const [year, month, day] = dateInput.value.split("-");
           formattedDate.textContent = `Formatted: ${month}/${day}/${year}`;
         } else {
           formattedDate.textContent = ""; // Clear if no date selected
