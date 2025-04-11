@@ -70,10 +70,7 @@
         background-color: #f9f9f9;
         outline: none;
         -webkit-appearance: none; /* Remove default select styling */
-        background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
-        background-repeat: no-repeat;
-        background-position: right 0.5rem center;
-        background-size: 1em;
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e  background-repeat: no-repeat; background-position: right 0.5rem center; background-size: 1em;
       }
 
       button {
@@ -443,7 +440,7 @@
           "Rau câu sợi xanh": { count: C7 * 0.4, unit: "thùng 6qt" },
           "Sương sáo": { count: C4 * 0.5, unit: "khay" },
           "Dừa non": { count: C6 * 0.4 + C7 * 0.3, unit: "thùng 6qt" },
-          "Bánh lọt": { count: C1 * 0.2 + C3 * 0.3 + C4 * 0.4, unit: "thùng 12qt" },
+          "Bánh lọt": { count: C1 * 0.2 + C3 * 0.3 + C4 * 0.4, unit: " защита 12qt" },
           "Hạt lựu": { count: C1 * 0.25 + C2 * 0.25 + C3 * 0.25, unit: "thùng 12qt" },
           "Hạt đác thốt nốt": { count: C1 * 0.04 + C6 * 0.2, unit: "thùng 12qt" },
           "Bơ pudding": { count: C7 * 30, unit: "cục" },
@@ -506,17 +503,37 @@
       function exportAsImage() {
         const resultsDiv = document.getElementById("results");
         const dateInput = document.getElementById("date-picker").value || "NoDate";
-        const formattedDate = dateInput
-          ? dateInput.replace(/-/g, "") // Convert "yyyy-mm-dd" to "yyyymmdd"
-          : "NoDate";
-
+        const formattedDate = dateInput ? dateInput.replace(/-/g, "") : "NoDate";
         const fileName = `BNC_${formattedDate}_Recipes.png`;
 
         html2canvas(resultsDiv, { scale: 2 }).then((canvas) => {
-          const link = document.createElement("a");
-          link.download = fileName; // Use dynamic file name
-          link.href = canvas.toDataURL("image/png");
-          link.click();
+          canvas.toBlob(async (blob) => {
+            if (navigator.share && blob) {
+              // Use Web Share API if available
+              const file = new File([blob], fileName, { type: "image/png" });
+              try {
+                await navigator.share({
+                  files: [file],
+                  title: "Recipes Image",
+                  text: "Save or share your recipes image",
+                });
+              } catch (error) {
+                console.error("Sharing failed:", error);
+                // Fallback to download
+                const link = document.createElement("a");
+                link.download = fileName;
+                link.href = URL.createObjectURL(blob);
+                link.click();
+                URL.revokeObjectURL(link.href); // Clean up
+              }
+            } else {
+              // Fallback to original download method
+              const link = document.createElement("a");
+              link.download = fileName;
+              link.href = canvas.toDataURL("image/png");
+              link.click();
+            }
+          }, "image/png");
         });
       }
     </script>
