@@ -17,7 +17,72 @@
         -webkit-tap-highlight-color: transparent;
       }
 
-      .container {
+      /* Login Styles */
+      .login-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      .login-box {
+        background-color: #e6f4e6; /* Light green */
+        padding: 30px;
+        border-radius: 16px;
+        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 400px;
+        text-align: center;
+      }
+
+      .login-box h2 {
+        font-size: 24px;
+        margin-bottom: 20px;
+        color: #111;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      input[type="password"] {
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+        border: 1px solid #e1e1e8;
+        border-radius: 8px;
+        outline: none;
+        box-sizing: border-box;
+      }
+
+      .login-box button {
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+        font-weight: bold;
+        background-color: #007aff;
+        color: white;
+        border: none;
+        border-radius: 12px;
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.15);
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .login-box button:hover {
+        background-color: #005bb5;
+      }
+
+      .error {
+        color: #d32f2f;
+        font-size: 14px;
+        margin-top: 10px;
+        display: none;
+      }
+
+      /* App Styles */
+      .app-container {
+        display: none; /* Hidden until login */
         max-width: 600px;
         margin: 30px auto;
         padding: 20px;
@@ -191,7 +256,17 @@
           flex-direction: column;
         }
 
-        .container {
+        .login-container {
+          padding: 15px;
+        }
+
+        .login-box {
+          padding: 20px;
+          margin: 0;
+          max-width: none;
+        }
+
+        .app-container {
           margin: 0;
           padding: 15px;
           padding-bottom: 90px;
@@ -300,7 +375,25 @@
 
       /* Extra small devices (phones, 600px and down) */
       @media (max-width: 600px) {
-        .container {
+        .login-box {
+          padding: 15px;
+        }
+
+        .login-box h2 {
+          font-size: 20px;
+        }
+
+        input[type="password"] {
+          padding: 10px;
+          font-size: 14px;
+        }
+
+        .login-box button {
+          padding: 10px;
+          font-size: 14px;
+        }
+
+        .app-container {
           padding: 10px;
           padding-bottom: 80px;
         }
@@ -380,14 +473,26 @@
           font-size: 18px;
         }
 
-        .container {
+        .app-container {
           padding-bottom: 70px;
         }
       }
     </style>
   </head>
   <body>
-    <div class="container">
+    <div id="login-container" class="login-container">
+      <div class="login-box">
+        <h2>BNC</h2>
+        <form id="login-form" onsubmit="handleLogin(event)">
+          <div class="form-group">
+            <input type="password" id="password" placeholder="Enter password" required />
+          </div>
+          <button type="submit">Login</button>
+          <div id="error-message" class="error">Incorrect password. Please try again.</div>
+        </form>
+      </div>
+    </div>
+    <div id="app-container" class="app-container">
       <h1>📝Kiểm Tra Nguyên Liệu (BNC)</h1>
       <form id="recipes-form">
         <div class="form-grid">
@@ -506,6 +611,34 @@
       </div>
     </div>
     <script>
+      // Login Handling
+      function handleLogin(event) {
+        event.preventDefault();
+        const password = document.getElementById("password").value;
+        const errorMessage = document.getElementById("error-message");
+
+        if (password === "123456") {
+          localStorage.setItem("bnc_login_token", "authenticated");
+          document.getElementById("login-container").style.display = "none";
+          document.getElementById("app-container").style.display = "block";
+        } else {
+          errorMessage.style.display = "block";
+          document.getElementById("password").value = "";
+        }
+      }
+
+      // Check login state on page load
+      window.onload = function () {
+        if (localStorage.getItem("bnc_login_token") === "authenticated") {
+          document.getElementById("login-container").style.display = "none";
+          document.getElementById("app-container").style.display = "block";
+        } else {
+          document.getElementById("login-container").style.display = "flex";
+          document.getElementById("app-container").style.display = "none";
+        }
+      };
+
+      // App Functions
       function formatDate() {
         const dateInput = document.getElementById("date-picker");
         const formattedDate = document.getElementById("formatted-date");
