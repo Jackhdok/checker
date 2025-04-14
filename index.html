@@ -250,7 +250,7 @@
           margin-top: 0;
           z-index: 100;
           box-sizing: border-box;
-          max-width: calc(100% - 25px); /* Left 15px + Right 10px */
+          max-width: calc(100% - 25px);
         }
 
         button.submit-btn {
@@ -260,7 +260,7 @@
           border-radius: 14px;
           box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
           min-width: 0;
-          max-width: calc(100% - 58px); /* Refresh btn (48px) + gap (10px) */
+          max-width: calc(100% - 58px);
         }
 
         button.refresh-btn {
@@ -332,14 +332,14 @@
           left: 10px;
           right: 10px;
           gap: 10px;
-          max-width: calc(100% - 20px); /* Left 10px + Right 10px */
+          max-width: calc(100% - 20px);
         }
 
         button.submit-btn {
           padding: 12px;
           font-size: 16px;
           border-radius: 12px;
-          max-width: calc(100% - 50px); /* Refresh btn (40px) + gap (10px) */
+          max-width: calc(100% - 50px);
         }
 
         button.refresh-btn {
@@ -365,13 +365,13 @@
           gap: 8px;
           left: 8px;
           right: 10px;
-          max-width: calc(100% - 18px); /* Left 8px + Right 10px */
+          max-width: calc(100% - 18px);
         }
 
         button.submit-btn {
           padding: 10px;
           font-size: 15px;
-          max-width: calc(100% - 44px); /* Refresh btn (36px) + gap (8px) */
+          max-width: calc(100% - 44px);
         }
 
         button.refresh-btn {
@@ -598,6 +598,9 @@
           ${hasRecipes ? `<div class="summary">📒Tóm tắt: ${summaryItems.join(", ")}</div>` : ""}
         `;
         formatDate();
+
+        // Scroll to results section
+        resultsDiv.scrollIntoView({ behavior: "smooth", block: "start" });
       }
 
       function resetForm() {
