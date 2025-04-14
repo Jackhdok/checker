@@ -616,28 +616,38 @@
         const fileName = `BNC_${formattedDate}_Recipes.png`;
 
         html2canvas(resultsDiv, { scale: 2 }).then((canvas) => {
-          canvas.toBlob(async (blob) => {
-            if (navigator.share && blob) {
-              const file = new File([blob], fileName, { type: "image/png" });
-              try {
-                await navigator.share({
-                  files: [file],
-                  title: "Recipes Image",
-                  text: "Save or share your recipes image",
-                });
-              } catch (error) {
-                console.error("Sharing failed:", error);
-                const link = document.createElement("a");
-                link.download = fileName;
-                link.href = URL.createObjectURL(blob);
-                link.click();
-                URL.revokeObjectURL(link.href);
-              }
-            } else {
+          canvas.toBlob((blob) => {
+            // Check if on desktop (>1024px)
+            if (window.innerWidth > 1024) {
               const link = document.createElement("a");
               link.download = fileName;
-              link.href = canvas.toDataURL("image/png");
+              link.href = URL.createObjectURL(blob);
               link.click();
+              URL.revokeObjectURL(link.href);
+            } else {
+              // Mobile behavior: try Web Share API, fallback to download
+              if (navigator.share && blob) {
+                const file = new File([blob], fileName, { type: "image/png" });
+                navigator
+                  .share({
+                    files: [file],
+                    title: "Recipes Image",
+                    text: "Save or share your recipes image",
+                  })
+                  .catch((error) => {
+                    console.error("Sharing failed:", error);
+                    const link = document.createElement("a");
+                    link.download = fileName;
+                    link.href = URL.createObjectURL(blob);
+                    link.click();
+                    URL.revokeObjectURL(link.href);
+                  });
+              } else {
+                const link = document.createElement("a");
+                link.download = fileName;
+                link.href = canvas.toDataURL("image/png");
+                link.click();
+              }
             }
           }, "image/png");
         });
