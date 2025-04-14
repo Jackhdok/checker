@@ -14,7 +14,7 @@
         padding: 0;
         color: #333;
         overflow-x: hidden;
-        -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
+        -webkit-tap-highlight-color: transparent;
       }
 
       .container {
@@ -69,15 +69,23 @@
         border-radius: 8px;
         background-color: #f9f9f9;
         outline: none;
-        -webkit-appearance: none; /* Remove default select styling */
+        -webkit-appearance: none;
         background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
         background-repeat: no-repeat;
         background-position: right 0.5rem center;
         background-size: 1em;
       }
 
-      button {
+      .button-container {
+        display: flex;
+        align-items: center;
+        gap: 10px;
         width: 100%;
+        margin-top: 20px;
+      }
+
+      button.submit-btn {
+        flex: 1;
         padding: 12px;
         font-size: 16px;
         font-weight: bold;
@@ -87,13 +95,33 @@
         border-radius: 12px;
         box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.15);
         cursor: pointer;
-        margin-top: 20px;
         transition: background-color 0.3s ease;
-        touch-action: manipulation; /* Improve touch responsiveness */
+        touch-action: manipulation;
       }
 
-      button:hover {
+      button.submit-btn:hover {
         background-color: #005bb5;
+      }
+
+      button.refresh-btn {
+        width: 40px;
+        height: 40px;
+        padding: 0;
+        font-size: 20px;
+        background-color: #e1e1e8;
+        color: #333;
+        border: none;
+        border-radius: 50%;
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.15);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.3s ease;
+      }
+
+      button.refresh-btn:hover {
+        background-color: #d1d1d8;
       }
 
       .results {
@@ -155,24 +183,26 @@
       /* Mobile App-Like Styling */
       @media (max-width: 1024px) {
         body {
-          background-color: #fff; /* Full white background for app-like feel */
+          background-color: #fff;
           padding: 0;
           margin: 0;
-          height: 100vh; /* Full height for mobile */
+          height: 100vh;
           display: flex;
-          flex-direction: column;
+          flex
+
+-direction: column;
         }
 
         .container {
           margin: 0;
           padding: 15px;
-          padding-bottom: 80px; /* Space for fixed button */
-          border-radius: 0; /* Remove rounded corners for full-screen app look */
-          box-shadow: none; /* Remove shadow for seamless integration */
+          padding-bottom: 80px;
+          border-radius: 0;
+          box-shadow: none;
           flex: 1;
-          overflow-y: auto; /* Allow scrolling within container */
+          overflow-y: auto;
           width: 100%;
-          max-width: none; /* Full width */
+          max-width: none;
         }
 
         h1 {
@@ -183,16 +213,16 @@
           background: #fff;
           z-index: 10;
           padding: 10px 0;
-          border-bottom: 1px solid #e1e1e8; /* Subtle divider */
+          border-bottom: 1px solid #e1e1e8;
         }
 
         .form-grid {
-          flex-direction: column; /* Stack columns on mobile */
+          flex-direction: column;
           gap: 10px;
         }
 
         .column {
-          width: 100%; /* Full width for each column */
+          width: 100%;
         }
 
         .recipe {
@@ -202,7 +232,7 @@
         }
 
         .recipe label {
-          font-size: 16px; /* Larger for touch readability */
+          font-size: 16px;
         }
 
         .recipe select {
@@ -211,18 +241,31 @@
           border-radius: 10px;
         }
 
-        button {
+        .button-container {
           position: fixed;
           bottom: 15px;
           left: 15px;
           right: 15px;
-          width: calc(100% - 30px); /* Account for left/right spacing */
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          margin-top: 0;
+          z-index: 100;
+        }
+
+        button.submit-btn {
+          flex: 1;
           padding: 15px;
           font-size: 18px;
           border-radius: 14px;
-          margin-top: 0; /* Remove margin for fixed positioning */
-          z-index: 100; /* Ensure button is above other content */
-          box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Stronger shadow for depth */
+          box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        button.refresh-btn {
+          width: 50px;
+          height: 50px;
+          font-size: 24px;
+          border-radius: 50%;
         }
 
         .results {
@@ -256,7 +299,7 @@
       @media (max-width: 600px) {
         .container {
           padding: 10px;
-          padding-bottom: 70px; /* Adjust for smaller button */
+          padding-bottom: 70px;
         }
 
         h1 {
@@ -281,14 +324,23 @@
           font-size: 14px;
         }
 
-        button {
-          padding: 12px;
-          font-size: 16px;
+        .button-container {
           bottom: 10px;
           left: 10px;
           right: 10px;
-          width: calc(100% - 20px); /* Slightly smaller margins */
+          gap: 8px;
+        }
+
+        button.submit-btn {
+          padding: 12px;
+          font-size: 16px;
           border-radius: 12px;
+        }
+
+        button.refresh-btn {
+          width: 40px;
+          height: 40px;
+          font-size: 20px;
         }
 
         th,
@@ -404,7 +456,10 @@
             </div>
           </div>
         </div>
-        <button type="button" onclick="checkIngredients()">Xem Nguyên Liệu</button>
+        <div class="button-container">
+          <button type="button" class="submit-btn" onclick="checkIngredients()">Xem Nguyên Liệu</button>
+          <button type="button" class="refresh-btn" onclick="resetForm()">🔄</button>
+        </div>
       </form>
       <div id="results" class="results" style="display: none">
         <div class="date-section">
@@ -429,7 +484,7 @@
           const [year, month, day] = dateInput.value.split("-");
           formattedDate.textContent = `Formatted: ${month}/${day}/${year}`;
         } else {
-          formattedDate.textContent = ""; // Clear if no date selected
+          formattedDate.textContent = "";
         }
       }
 
@@ -514,6 +569,12 @@
         formatDate();
       }
 
+      function resetForm() {
+        document.getElementById("recipes-form").reset();
+        const resultsDiv = document.getElementById("results");
+        resultsDiv.style.display = "none";
+      }
+
       function exportAsImage() {
         const resultsDiv = document.getElementById("results");
         const dateInput = document.getElementById("date-picker").value || "NoDate";
@@ -523,7 +584,6 @@
         html2canvas(resultsDiv, { scale: 2 }).then((canvas) => {
           canvas.toBlob(async (blob) => {
             if (navigator.share && blob) {
-              // Use Web Share API if available
               const file = new File([blob], fileName, { type: "image/png" });
               try {
                 await navigator.share({
@@ -533,15 +593,13 @@
                 });
               } catch (error) {
                 console.error("Sharing failed:", error);
-                // Fallback to download
                 const link = document.createElement("a");
                 link.download = fileName;
                 link.href = URL.createObjectURL(blob);
                 link.click();
-                URL.revokeObjectURL(link.href); // Clean up
+                URL.revokeObjectURL(link.href);
               }
             } else {
-              // Fallback to original download method
               const link = document.createElement("a");
               link.download = fileName;
               link.href = canvas.toDataURL("image/png");
