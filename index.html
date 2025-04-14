@@ -194,7 +194,7 @@
         .container {
           margin: 0;
           padding: 15px;
-          padding-bottom: 90px; /* Increased to ensure no content is hidden */
+          padding-bottom: 90px;
           border-radius: 0;
           box-shadow: none;
           flex: 1;
@@ -241,12 +241,12 @@
 
         .button-container {
           position: fixed;
-          bottom: 20px; /* Increased for safe spacing */
+          bottom: 20px;
           left: 15px;
-          right: 15px;
+          right: 10px; /* Adjusted to ensure refresh button is 10px from right edge */
           display: flex;
           align-items: center;
-          gap: 12px; /* Slightly larger gap for clarity */
+          gap: 10px;
           margin-top: 0;
           z-index: 100;
           box-sizing: border-box;
@@ -254,19 +254,19 @@
 
         button.submit-btn {
           flex: 1;
-          padding: 14px; /* Slightly larger for touch */
+          padding: 14px;
           font-size: 17px;
           border-radius: 14px;
           box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-          min-width: 0; /* Prevent overflow */
+          min-width: 0;
         }
 
         button.refresh-btn {
-          width: 48px; /* Slightly larger for touch */
+          width: 48px;
           height: 48px;
           font-size: 22px;
           border-radius: 50%;
-          flex-shrink: 0; /* Prevent compression */
+          flex-shrink: 0;
         }
 
         .results {
@@ -300,7 +300,7 @@
       @media (max-width: 600px) {
         .container {
           padding: 10px;
-          padding-bottom: 80px; /* Adjusted for smaller buttons */
+          padding-bottom: 80px;
         }
 
         h1 {
@@ -328,9 +328,9 @@
         .button-container {
           bottom: 15px;
           left: 10px;
-          right: 10px;
+          right: 10px; /* Maintain 10px for refresh button */
           gap: 10px;
-          padding: 0 5px; /* Extra padding to avoid edge cutoff */
+          padding: 0 5px;
         }
 
         button.submit-btn {
@@ -356,12 +356,12 @@
         }
       }
 
-      /* Very small devices (e.g., iPhone SE, 320px and down) */
+      /* Very small devices (e.g., iPhone SE, 360px and down) */
       @media (max-width: 360px) {
         .button-container {
           gap: 8px;
           left: 8px;
-          right: 8px;
+          right: 10px; /* Ensure 10px from right edge */
         }
 
         button.submit-btn {
