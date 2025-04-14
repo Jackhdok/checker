@@ -243,13 +243,14 @@
           position: fixed;
           bottom: 20px;
           left: 15px;
-          right: 10px; /* Adjusted to ensure refresh button is 10px from right edge */
+          right: 10px;
           display: flex;
           align-items: center;
           gap: 10px;
           margin-top: 0;
           z-index: 100;
           box-sizing: border-box;
+          max-width: calc(100% - 25px); /* Left 15px + Right 10px */
         }
 
         button.submit-btn {
@@ -259,6 +260,7 @@
           border-radius: 14px;
           box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
           min-width: 0;
+          max-width: calc(100% - 58px); /* Refresh btn (48px) + gap (10px) */
         }
 
         button.refresh-btn {
@@ -328,15 +330,16 @@
         .button-container {
           bottom: 15px;
           left: 10px;
-          right: 10px; /* Maintain 10px for refresh button */
+          right: 10px;
           gap: 10px;
-          padding: 0 5px;
+          max-width: calc(100% - 20px); /* Left 10px + Right 10px */
         }
 
         button.submit-btn {
           padding: 12px;
           font-size: 16px;
           border-radius: 12px;
+          max-width: calc(100% - 50px); /* Refresh btn (40px) + gap (10px) */
         }
 
         button.refresh-btn {
@@ -361,12 +364,14 @@
         .button-container {
           gap: 8px;
           left: 8px;
-          right: 10px; /* Ensure 10px from right edge */
+          right: 10px;
+          max-width: calc(100% - 18px); /* Left 8px + Right 10px */
         }
 
         button.submit-btn {
           padding: 10px;
           font-size: 15px;
+          max-width: calc(100% - 44px); /* Refresh btn (36px) + gap (8px) */
         }
 
         button.refresh-btn {
