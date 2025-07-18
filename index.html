@@ -496,7 +496,7 @@
       <h1>📝Kiểm Tra Nguyên Liệu (BNC)</h1>
       <form id="recipes-form">
         <div class="form-grid">
-          <!-- Left Column: C1-C4 -->
+          <!-- Left Column: Chè Đặc Biệt-Sương Sáo Bánh Lọt -->
           <div class="column">
             <div class="recipe">
               <label for="recipe-c1">Chè Đặc Biệt</label>
@@ -532,7 +532,7 @@
               </select>
             </div>
             <div class="recipe">
-              <label for="recipe-c4">Chè Sương Sáo Bánh Lọt</label>
+              <label for="recipe-c4">Sương Sáo Bánh Lọt</label>
               <select id="recipe-c4" name="recipe-c4">
                 <option value="0" selected>0</option>
                 <script>
@@ -544,10 +544,10 @@
             </div>
           </div>
 
-          <!-- Right Column: C5-C8 -->
+          <!-- Right Column: Nhãn Nha Đam-Đậu Hủ Đặc Biệt -->
           <div class="column">
             <div class="recipe">
-              <label for="recipe-c5">Chè Nhãn Nha Đam</label>
+              <label for="recipe-c5">Nhãn Nha Đam</label>
               <select id="recipe-c5" name="recipe-c5">
                 <option value="0" selected>0</option>
                 <script>
@@ -558,7 +558,7 @@
               </select>
             </div>
             <div class="recipe">
-              <label for="recipe-c6">Dừa Dằm Thốt Nốt</label>
+              <label for="recipe-c6">Dừa Dầm Thốt Nốt</label>
               <select id="recipe-c6" name="recipe-c6">
                 <option value="0" selected>0</option>
                 <script>
@@ -655,36 +655,36 @@
       document.getElementById("date-picker").addEventListener("input", formatDate);
 
       function checkIngredients() {
-        const C1 = parseInt(document.getElementById("recipe-c1").value);
-        const C2 = parseInt(document.getElementById("recipe-c2").value);
-        const C3 = parseInt(document.getElementById("recipe-c3").value);
-        const C4 = parseInt(document.getElementById("recipe-c4").value);
-        const C5 = parseInt(document.getElementById("recipe-c5").value);
-        const C6 = parseInt(document.getElementById("recipe-c6").value);
-        const C7 = parseInt(document.getElementById("recipe-c7").value);
-        const C8 = parseInt(document.getElementById("recipe-c8").value);
+        const cheDocBiet = parseInt(document.getElementById("recipe-c1").value);
+        const cheThai = parseInt(document.getElementById("recipe-c2").value);
+        const cheBaMau = parseInt(document.getElementById("recipe-c3").value);
+        const suongSaoBanhLot = parseInt(document.getElementById("recipe-c4").value);
+        const nhanNhaDam = parseInt(document.getElementById("recipe-c5").value);
+        const duaDamThotNot = parseInt(document.getElementById("recipe-c6").value);
+        const cheBo = parseInt(document.getElementById("recipe-c7").value);
+        const dauHuDocBiet = parseInt(document.getElementById("recipe-c8").value);
 
         const ingredients = {
-          "Đậu đỏ": { count: C1 * 0.2 + C3 * 0.4, unit: "thùng 12qt" },
-          "Đậu trắng": { count: C1 * 0.2 + C3 * 0.4, unit: "thùng 12qt" },
-          "Đậu xanh": { count: C1 * 0.125 + C3 * 0.125 + C7 * 0.125, unit: "thùng 6qt" },
-          "Khoai môn": { count: C1 * 0.2, unit: "ô" },
-          "Rau câu dẻo": { count: C1 * 0.16 + C2 * 0.2 + C6 * 0.3 + C7 * 0.3, unit: "thùng 12qt" },
-          "Rau câu sợi xanh": { count: C7 * 0.4, unit: "thùng 6qt" },
-          "Sương sáo": { count: C4 * 0.5, unit: "khay" },
-          "Dừa non": { count: C8 * 0.5 + C6 * 0.4, unit: "thùng 6qt" },
-          "Bánh lọt": { count: C1 * 0.2 + C3 * 0.3 + C4 * 0.4, unit: "thùng 12qt" },
-          "Hạt lựu": { count: C1 * 0.25 + C2 * 0.25 + C3 * 0.25, unit: "thùng 12qt" },
-          "Hạt đác thốt nốt": { count: C1 * 0.04 + C6 * 0.2, unit: "thùng 12qt" },
-          "Bơ pudding": { count: C7 * 30, unit: "cục" },
-          "Bơ xay": { count: C7 * 1, unit: "ô" },
-          "Bơ cục": { count: C7 * 1.25, unit: "ô" },
-          "Dừa sợi": { count: C6 * 0.333, unit: "thùng 6qt" },
-          "Mít": { count: C1 * 0.25 + C2 * 0.3333, unit: "ô" },
-          "Sầu riêng": { count: C1 * 0.3, unit: "ô" },
-          "Sữa dừa dầm": { count: C6 * 1, unit: "ca" },
-          "Đậu phộng": { count: C1 * 0.25 + C6 * 0.3, unit: "bịch" },
-          "Đậu hủ": { count: C8 * 30, unit: "ly" },
+          "Đậu đỏ": { count: cheDocBiet * 0.2 + cheBaMau * 0.4, unit: "thùng 12qt" },
+          "Đậu trắng": { count: cheDocBiet * 0.2 + cheBaMau * 0.4, unit: "thùng 12qt" },
+          "Đậu xanh": { count: cheDocBiet * 0.125 + cheBaMau * 0.125 + cheBo * 0.125, unit: "thùng 6qt" },
+          "Khoai môn": { count: cheDocBiet * 0.2, unit: "ô" },
+          "Rau câu dẻo": { count: cheDocBiet * 0.16 + cheThai * 0.2 + duaDamThotNot * 0.3 + cheBo * 0.3, unit: "thùng 12qt" },
+          "Rau câu sợi xanh": { count: cheBo * 0.4, unit: "thùng 6qt" },
+          "Sương sáo": { count: suongSaoBanhLot * 0.5, unit: "khay" },
+          "Dừa non": { count: dauHuDocBiet * 0.5 + duaDamThotNot * 0.4, unit: "thùng 6qt" },
+          "Bánh lọt": { count: cheDocBiet * 0.2 + cheBaMau * 0.3 + suongSaoBanhLot * 0.4, unit: "thùng 12qt" },
+          "Hạt lựu": { count: cheDocBiet * 0.25 + cheThai * 0.25 + cheBaMau * 0.25, unit: "thùng 12qt" },
+          "Hạt đác thốt nốt": { count: cheDocBiet * 0.04 + duaDamThotNot * 0.2, unit: "thùng 12qt" },
+          "Bơ pudding": { count: cheBo * 30, unit: "cục" },
+          "Bơ xay": { count: cheBo * 1, unit: "ô" },
+          "Bơ cục": { count: cheBo * 1.25, unit: "ô" },
+          "Dừa sợi": { count: duaDamThotNot * 0.333, unit: "thùng 6qt" },
+          "Mít": { count: cheDocBiet * 0.25 + cheThai * 0.3333, unit: "ô" },
+          "Sầu riêng": { count: cheDocBiet * 0.3, unit: "ô" },
+          "Sữa dừa dầm": { count: duaDamThotNot * 1, unit: "ca" },
+          "Đậu phộng": { count: cheDocBiet * 0.25 + duaDamThotNot * 0.3, unit: "bịch" },
+          "Đậu hủ": { count: dauHuDocBiet * 30, unit: "ly" },
         };
 
         const usedIngredients = Object.entries(ingredients)
@@ -694,7 +694,16 @@
               `<tr><td><strong style="font-size: 12px; color: green;">${name}</strong></td><td>${data.count.toFixed(3)}</td><td>${data.unit}</td></tr>`
           );
 
-        const recipeValues = { C1, C2, C3, C4, C5, C6, C7, C8 };
+        const recipeValues = { 
+          "Chè Đặc Biệt": cheDocBiet, 
+          "Chè Thái": cheThai, 
+          "Chè Ba Màu": cheBaMau, 
+          "Sương Sáo Bánh Lọt": suongSaoBanhLot, 
+          "Nhãn Nha Đam": nhanNhaDam, 
+          "Dừa Dầm Thốt Nốt": duaDamThotNot, 
+          "Chè Bơ": cheBo, 
+          "Đậu Hủ Đặc Biệt": dauHuDocBiet 
+        };
         const summaryItems = Object.entries(recipeValues)
           .filter(([_, value]) => value > 0)
           .map(([key, value]) => `${key}: ${value}`);
