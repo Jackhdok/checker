@@ -378,13 +378,14 @@
 
         .button-container {
           position: fixed;
-          bottom: env(safe-area-inset-bottom);
-          left: 0;
-          right: 0;
+          bottom: calc(20px + env(safe-area-inset-bottom));
+          left: 20px;
+          right: 20px;
           padding: 20px;
           background: rgba(255, 255, 255, 0.95);
           backdrop-filter: blur(20px);
           border-top: 1px solid rgba(0, 0, 0, 0.1);
+          border-radius: 16px;
           display: flex;
           align-items: center;
           gap: 12px;
@@ -558,6 +559,10 @@
         .button-container {
           padding: 16px;
           gap: 10px;
+          bottom: calc(16px + env(safe-area-inset-bottom));
+          left: 16px;
+          right: 16px;
+          border-radius: 14px;
         }
 
         button.submit-btn {
@@ -620,6 +625,10 @@
         .button-container {
           padding: 14px;
           gap: 8px;
+          bottom: calc(14px + env(safe-area-inset-bottom));
+          left: 14px;
+          right: 14px;
+          border-radius: 12px;
         }
 
         button.submit-btn {
