@@ -260,11 +260,16 @@
 
         .login-container {
           padding: 20px;
+          padding-left: calc(20px + env(safe-area-inset-left));
+          padding-right: calc(20px + env(safe-area-inset-right));
+          padding-top: calc(20px + env(safe-area-inset-top));
+          padding-bottom: calc(20px + env(safe-area-inset-bottom));
           background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
           min-height: 100vh;
           display: flex;
           align-items: center;
           justify-content: center;
+          box-sizing: border-box;
         }
 
         .login-box {
@@ -284,6 +289,8 @@
           padding: 0;
           padding-top: env(safe-area-inset-top);
           padding-bottom: calc(100px + env(safe-area-inset-bottom));
+          padding-left: env(safe-area-inset-left);
+          padding-right: env(safe-area-inset-right);
           border-radius: 0;
           box-shadow: none;
           flex: 1;
@@ -292,6 +299,7 @@
           max-width: none;
           background: #f8f9fa;
           -webkit-overflow-scrolling: touch;
+          box-sizing: border-box;
         }
 
         h1 {
@@ -304,6 +312,8 @@
           z-index: 10;
           padding: 20px 20px;
           padding-top: calc(20px + env(safe-area-inset-top));
+          padding-left: calc(20px + env(safe-area-inset-left));
+          padding-right: calc(20px + env(safe-area-inset-right));
           border-bottom: none;
           font-weight: 600;
           text-align: center;
@@ -379,8 +389,8 @@
         .button-container {
           position: fixed;
           bottom: calc(20px + env(safe-area-inset-bottom));
-          left: 20px;
-          right: 20px;
+          left: calc(20px + env(safe-area-inset-left));
+          right: calc(20px + env(safe-area-inset-right));
           padding: 20px;
           background: rgba(255, 255, 255, 0.95);
           backdrop-filter: blur(20px);
@@ -391,6 +401,8 @@
           gap: 12px;
           z-index: 100;
           box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.1);
+          box-sizing: border-box;
+          max-width: calc(100vw - 40px - env(safe-area-inset-left) - env(safe-area-inset-right));
         }
 
         button.submit-btn {
@@ -560,9 +572,10 @@
           padding: 16px;
           gap: 10px;
           bottom: calc(16px + env(safe-area-inset-bottom));
-          left: 16px;
-          right: 16px;
+          left: calc(16px + env(safe-area-inset-left));
+          right: calc(16px + env(safe-area-inset-right));
           border-radius: 14px;
+          max-width: calc(100vw - 32px - env(safe-area-inset-left) - env(safe-area-inset-right));
         }
 
         button.submit-btn {
@@ -626,9 +639,10 @@
           padding: 14px;
           gap: 8px;
           bottom: calc(14px + env(safe-area-inset-bottom));
-          left: 14px;
-          right: 14px;
+          left: calc(14px + env(safe-area-inset-left));
+          right: calc(14px + env(safe-area-inset-right));
           border-radius: 12px;
+          max-width: calc(100vw - 28px - env(safe-area-inset-left) - env(safe-area-inset-right));
         }
 
         button.submit-btn {
